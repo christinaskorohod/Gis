@@ -6,22 +6,10 @@
 
 {% block content %}
     <h1>Home</h1>
-    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aut, culpa dolore error magnam minus mollitia
-        omnis quas ratione sint? Excepturi harum, necessitatibus obcaecati repellendus ullam vero voluptas. Magnam,
-        minima.
-    </div>
-    <div>Blanditiis corporis ducimus, ea eum exercitationem expedita id in itaque labore magnam officia quod repellendus
-        sequi unde voluptates! Accusamus dolorem molestias, numquam officia praesentium quis ut veniam? Amet debitis,
-        repellat?
-    </div>
-    <div>Ab aliquid atque cumque deleniti doloribus et excepturi harum illo illum inventore iure minus molestiae nobis
-        nulla officiis perspiciatis quae quaerat, quasi quia quis reiciendis sequi similique tempora ullam unde?
-    </div>
-    <div>Ipsam, nam, sit. Ab adipisci at, deleniti dolores eius facere facilis hic in, ipsam iste iure laudantium magnam
-        maiores molestias natus neque quod rem repellendus veritatis vero. Necessitatibus sunt, voluptatibus.
-    </div>
-    <div>Laboriosam magni modi nostrum, omnis quisquam repellendus soluta voluptate? Asperiores aut commodi consequuntur
-        culpa cumque, cupiditate dolore eaque excepturi explicabo harum, mollitia natus nesciunt numquam omnis
-        perferendis quas vel veniam?
-    </div>
+
+    {% for article in articles %}
+        <h3>{{ article.title }}</h3>
+        <p>{{ article.text }}</p>
+    {% endfor %}
+
 {% endblock %}
