@@ -1,31 +1,49 @@
 {% extends 'gis/base.html' %}
 
 {% block title %}
-    Map
+    {{ article.title }}
+{% endblock %}
+
+{%  block maphead %}
+
+
+<link rel="stylesheet" href="https://js.arcgis.com/4.10/esri/css/main.css">
+
+<script src="https://js.arcgis.com/4.10/"></script>
+
+<script>
+require([
+  "esri/Map",
+  "esri/views/MapView",
+  "esri/widgets/Home",
+  "esri/widgets/Locate",
+  "esri/widgets/Search"
+], function(Map, MapView, Home, Locate, Search){
+  var map = new Map({
+    basemap: "streets"
+  });
+  var view = new MapView({
+    container: "viewDiv",  // Reference to the scene div created in step 5
+    map: map,  // Reference to the map object created before the scene
+    zoom: 4,  // Sets zoom level based on level of detail (LOD)
+    center: [30.540364,50.445836]  // Sets center point of view using longitude,latitude
+  });
+  var homeBtn = new Home({
+        view: view
+  });
+  view.ui.add(homeBtn, "top-left");
+  var locateBtn = new Locate({
+        view: view
+  });
+  view.ui.add(locateBtn,"top-left") ;
+  var searchWidget = new Search({
+        view: view
+  });
+  view.ui.add(searchWidget,"top-right")
+});
+</script>
 {% endblock %}
 
 {% block content %}
-
-        <h3>Map</h3>
-    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusantium architecto asperiores consequatur,
-        corporis cumque dolorem expedita fugiat, illum impedit inventore laborum maxime molestiae nulla quibusdam saepe
-        temporibus ullam vero.
-    </div>
-    <div>Explicabo ipsam omnis provident quidem! Aliquam cum deleniti esse, laborum, libero, maiores minima natus nulla
-        perferendis possimus quidem veritatis. Animi deleniti deserunt ducimus expedita impedit modi provident quam quia
-        voluptas.
-    </div>
-    <div>Animi aperiam autem consectetur corporis, cumque deserunt dolore dolorem ducimus earum, eligendi eos fugit
-        inventore, maiores modi nemo porro quam quas qui ratione recusandae rerum sapiente sequi veritatis voluptatibus
-        voluptatum!
-    </div>
-    <div>Accusantium alias eius fugit incidunt ipsa nihil perspiciatis quod sequi? Ab exercitationem explicabo quae
-        voluptatum. Consequuntur delectus exercitationem id impedit mollitia nam perferendis, qui, quibusdam quisquam
-        recusandae sed, voluptate voluptatibus!
-    </div>
-    <div>Aliquid beatae blanditiis distinctio molestias necessitatibus quisquam, quo ratione. A ducimus enim, harum
-        impedit provident reprehenderit saepe? Ipsa odio, sint? Libero pariatur provident quidem veritatis? Aspernatur
-        facere nisi odio perspiciatis.
-    </div>
-
+    <div id="viewDiv" style="height: 700px !important"></div>
 {% endblock %}
