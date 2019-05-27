@@ -16,8 +16,9 @@ require([
     "esri/Map",
     "esri/views/MapView",
     "esri/widgets/Home",
+    "esri/widgets/Locate",
     "esri/widgets/Search",
-], function(Map, MapView, Home, Search){
+], function(Map, MapView, Home, Locate, Search){
   var map = new Map({
     basemap: "streets"
   });
@@ -29,6 +30,10 @@ require([
   });
   var homeBtn = new Home({
         view: view
+  });
+  view.ui.add(homeBtn, "top-left");
+  var locateBtn = new Locate({
+      view: view
   });
   view.ui.add(locateBtn,"top-left") ;
   var searchWidget = new Search({
